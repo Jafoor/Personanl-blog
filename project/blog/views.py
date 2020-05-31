@@ -1,5 +1,5 @@
 from django.shortcuts import render , get_object_or_404, redirect
-
+from .models import *
 # Create your views here.
 
 def home(request):
@@ -12,8 +12,13 @@ def about(request):
 
 def englishblog(request):
 
-    return render(request, 'englishblog.html')
+    news = Post.objects.filter(language='english').order_by('-pk')
 
-def blogdetails(request):
+    return render(request, 'englishblog.html',{'news' : news})
 
-    return render(request, 'blogdetails.html')
+def blogdetails(request,word):
+
+    detail = Post.objects.get(urltitle = word)
+    print(detail)
+
+    return render(request, 'blogdetails.html',{'detail':detail})
