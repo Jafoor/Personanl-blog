@@ -96,72 +96,69 @@
 							</div>
 
 
+
+							{% if comments %}
 							<div class="comments-area">
-								<h4>05 Comments</h4>
+								{% if comments|length > 1%}
+								<h4>{{comments|length}} Comments</h4>
+								{% else %}
+								<h4>{{comments|length}} Comment</h4>
+								{% endif %}
+								{% for com in comments %}
 								<div class="comment-list">
                                     <div class="single-comment justify-content-between d-flex">
                                         <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="{% static 'img/blog/c1.jpg' %}" alt="">
-                                            </div>
                                             <div class="desc">
-                                                <h5><a href="#">Emilly Blunt</a></h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
+                                                <h5><a href="#">{{com.name}}</a></h5>
+                                                <p class="date">{{com.date}} </p>
                                                 <p class="comment">
-                                                    Never say goodbye till the end comes!
+                                                    {{com.comment}}
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="reply-btn">
-                                               <a href="" class="btn-reply text-uppercase">reply</a>
-                                        </div>
+
                                     </div>
                                 </div>
+									{% endfor %}
 
 							</div>
+							{% else %}
+							<h4>You can be the first commenter </h4>
+
+							{% endif %}
 
 
-							<div class="comments-area">
-								<h4>05 Comments</h4>
-								<div class="comment-list">
-                                    <div class="single-comment justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="{% static 'img/blog/c1.jpg' %}" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">Emilly Blunt</a></h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                <p class="comment">
-                                                    Never say goodbye till the end comes!
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="reply-btn">
-                                               <a href="" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-							</div>
-
-							
 							<div class="comment-form">
 								<h4>Leave a Comment</h4>
-								<form>
+								<form method="POST" action="">
+									{% csrf_token %}
 									<div class="form-group form-inline">
 									  <div class="form-group col-lg-6 col-md-12 name">
-									    <input type="text" class="form-control" id="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
+									    <input type="text" class="form-control" id="name" name = "name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" required>
 									  </div>
 									  <div class="form-group col-lg-6 col-md-12 email">
-									    <input type="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+									    <input type="email" class="form-control" id="email" name = "email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" required>
 									  </div>
 									</div>
 									<div class="form-group">
 										<textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
 									</div>
-									<a href="#" class="primary-btn text-uppercase">Post Comment</a>
+									<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+									{% for message in messages %}
+
+									<p id="messages" class="p-3 mb-2 bg-success text-white">{{message}} </p>
+
+									{% endfor %}
+
+									<script>
+										$(document).ready(function() {
+										$('#messages').fadeOut(10000); // 10 seconds x 1000 milisec = 5000 milisec
+										});
+									</script>
+
+									<input class="primary-btn text-uppercase" type="submit" value = "Post Comment">
 								</form>
+
 							</div>
 						</div>
 						<div class="col-lg-4 sidebar-widgets">
@@ -174,59 +171,33 @@
 								</div>
 								<div class="single-sidebar-widget user-info-widget">
 									<img src="img/blog/user-info.png" alt="">
-									<a href="#"><h4>Charlie Barber</h4></a>
+									<a href="#"><h4>Follow Me</h4></a>
 									<p>
-										Senior blog writer
+										Stay Conneted with US
 									</p>
 									<ul class="social-links">
-										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="fa fa-github"></i></a></li>
-										<li><a href="#"><i class="fa fa-behance"></i></a></li>
+										<li><a href="{{site.fb}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="{{site.tw}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="{{site.gh}}" target="_blank"><i class="fa fa-github"></i></a></li>
+										<!--<li><a href="#"><i class="fa fa-behance"></i></a></li>-->
 									</ul>
-									<p>
-										Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.
-									</p>
+
 								</div>
 								<div class="single-sidebar-widget popular-post-widget">
 									<h4 class="popular-title">Popular Posts</h4>
 									<div class="popular-post-list">
+										{% for posts in popularpost %}
 										<div class="single-post-list d-flex flex-row align-items-center">
 											<div class="thumb">
-												<img class="img-fluid" src="img/blog/pp1.jpg" alt="">
+												<img class="img-fluid" style="width:100px;height:50px;" src="{{posts.photo.url}}" alt="">
 											</div>
 											<div class="details">
-												<a href="blog-single.html"><h6>Space The Final Frontier</h6></a>
-												<p>02 Hours ago</p>
+												<a href="{% url 'blogdetails' word=posts.urltitle %}"><h6>{{posts.title}}</h6></a>
+												<p>{{posts.pub_date}}</p>
 											</div>
 										</div>
-										<div class="single-post-list d-flex flex-row align-items-center">
-											<div class="thumb">
-												<img class="img-fluid" src="img/blog/pp2.jpg" alt="">
-											</div>
-											<div class="details">
-												<a href="blog-single.html"><h6>The Amazing Hubble</h6></a>
-												<p>02 Hours ago</p>
-											</div>
-										</div>
-										<div class="single-post-list d-flex flex-row align-items-center">
-											<div class="thumb">
-												<img class="img-fluid" src="img/blog/pp3.jpg" alt="">
-											</div>
-											<div class="details">
-												<a href="blog-single.html"><h6>Astronomy Or Astrology</h6></a>
-												<p>02 Hours ago</p>
-											</div>
-										</div>
-										<div class="single-post-list d-flex flex-row align-items-center">
-											<div class="thumb">
-												<img class="img-fluid" src="img/blog/pp4.jpg" alt="">
-											</div>
-											<div class="details">
-												<a href="blog-single.html"><h6>Asteroids telescope</h6></a>
-												<p>02 Hours ago</p>
-											</div>
-										</div>
+										{% endfor %}
+
 									</div>
 								</div>
 								<div class="single-sidebar-widget ads-widget">
@@ -277,45 +248,6 @@
 												<p>44</p>
 											</a>
 										</li>
-									</ul>
-								</div>
-								<div class="single-sidebar-widget newsletter-widget">
-									<h4 class="newsletter-title">Newsletter</h4>
-									<p>
-										Here, I focus on a range of items and features that we use in life without
-										giving them a second thought.
-									</p>
-									<div class="form-group d-flex flex-row">
-									   <div class="col-autos">
-									      <div class="input-group">
-									        <div class="input-group-prepend">
-									          <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
-											</div>
-									        </div>
-									        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" >
-									      </div>
-									    </div>
-									    <a href="#" class="bbtns">Subcribe</a>
-									</div>
-									<p class="text-bottom">
-										You can unsubscribe at any time
-									</p>
-								</div>
-								<div class="single-sidebar-widget tag-cloud-widget">
-									<h4 class="tagcloud-title">Tag Clouds</h4>
-									<ul>
-										<li><a href="#">Technology</a></li>
-										<li><a href="#">Fashion</a></li>
-										<li><a href="#">Architecture</a></li>
-										<li><a href="#">Fashion</a></li>
-										<li><a href="#">Food</a></li>
-										<li><a href="#">Technology</a></li>
-										<li><a href="#">Lifestyle</a></li>
-										<li><a href="#">Art</a></li>
-										<li><a href="#">Adventure</a></li>
-										<li><a href="#">Food</a></li>
-										<li><a href="#">Lifestyle</a></li>
-										<li><a href="#">Adventure</a></li>
 									</ul>
 								</div>
 							</div>
