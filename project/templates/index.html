@@ -1,6 +1,10 @@
 {% extends 'master.html' %}
 {% load static %}
 
+{% block logu %}
+				        <a href="{% url 'home' %}"><img src="{{ site.loge.url }}" alt="" title="" height="50" weight="100"></a>
+{% endblock %}
+
 {% block content %}
 
 
@@ -14,7 +18,7 @@
 				<p>
 					I've created this site to share my thinks, thoughts and ideas with you. Hope, it would be an interesting journey for both us.
 				</p>
-				<a href="#" class="primary-btn text-uppercase">discover now</a>
+				<a href="{% url 'category' %}" class="primary-btn text-uppercase">discover now</a>
 			</div>
 			<div class="col-lg-6 col-md-6 banner-right d-flex align-self-end">
 				<img class="img-fluid" src="{% static 'img/mypic.jpg'%}" alt="" width="500" height="150">
@@ -37,7 +41,7 @@
 				<p>
 					Hi! I'm Abu Jafo Mohammad Saleh. People know me as Jafor. Presently, I study in Jashore University of Science and Technology(JUST) at Computer Science and Engineeering(CSE). I love Competitive Programming.
 				</p>
-				<a href="#" class="primary-btn text-uppercase">View Full Details</a>
+				<a href="{% url 'about' %}" class="primary-btn text-uppercase">View Full Details</a>
 			</div>
 		</div>
 	</div>
@@ -56,75 +60,29 @@
 			</div>
 		</div>
 		<div class="row">
+			{% for post in latest %}
 			<div class="single-recent-blog col-lg-4 col-md-4">
 				<div class="thumb">
-					<img class="f-img img-fluid mx-auto" src="img/b1.jpg" alt="">
+					<img class="f-img img-fluid mx-auto" src="{{post.photo.url}}" alt="">
 				</div>
 				<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
 					<div>
-						<img class="img-fluid" src="img/user.png" alt="">
-						<a href="#"><span>Mark Wiens</span></a>
+
+						<a href="{% url 'about' %}"><span>{{post.author}}</span></a>
 					</div>
 					<div class="meta">
-						13th Dec
-						<span class="lnr lnr-heart"></span> 15
-						<span class="lnr lnr-bubble"></span> 04
+						{{post.pub_date}}
 					</div>
 				</div>
-				<a href="#">
-					<h4>Break Through Self Doubt
-					And Fear</h4>
+				<a href="{% url 'blogdetails' word=post.urltitle %}">
+					<h4>{{post.title}}</h4>
 				</a>
 				<p>
-					Dream interpretation has many forms; it can be done be done for the sake of fun, hobby or can be taken up as a serious career.
+					{{post.shortTxt}}
 				</p>
 			</div>
-			<div class="single-recent-blog col-lg-4 col-md-4">
-				<div class="thumb">
-					<img class="f-img img-fluid mx-auto" src="img/b2.jpg" alt="">
-				</div>
-				<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
-					<div>
-						<img class="img-fluid" src="img/user.png" alt="">
-						<a href="#"><span>Mark Wiens</span></a>
-					</div>
-					<div class="meta">
-						13th Dec
-						<span class="lnr lnr-heart"></span> 15
-						<span class="lnr lnr-bubble"></span> 04
-					</div>
-				</div>
-				<a href="#">
-					<h4>Portable Fashion for
-					young women</h4>
-				</a>
-				<p>
-					You may be a skillful, effective employer but if you don’t trust your personnel and the opposite, then the chances of improving.
-				</p>
-			</div>
-			<div class="single-recent-blog col-lg-4 col-md-4">
-				<div class="thumb">
-					<img class="f-img img-fluid mx-auto" src="img/b3.jpg" alt="">
-				</div>
-				<div class="bottom d-flex justify-content-between align-items-center flex-wrap">
-					<div>
-						<img class="img-fluid" src="img/user.png" alt="">
-						<a href="#"><span>Mark Wiens</span></a>
-					</div>
-					<div class="meta">
-						13th Dec
-						<span class="lnr lnr-heart"></span> 15
-						<span class="lnr lnr-bubble"></span> 04
-					</div>
-				</div>
-				<a href="#">
-					<h4>Do Dreams Serve As
-					A Premonition</h4>
-				</a>
-				<p>
-					So many of us are demotivated to achieve anything. Such people are not enthusiastic about anything. They don’t want to work involved.
-				</p>
-			</div>
+
+			{% endfor %}
 
 
 		</div>
@@ -209,16 +167,20 @@
 <section class="facts-area section-gap" id="facts-area">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4 col-md-6 single-fact">
-				<h1 class="counter">2536</h1>
+			<div class="col-lg-3 col-md-6 single-fact">
+				<h1 class="counter">{{cat}}</h1>
+				<p>Total Catgories</p>
+			</div>
+			<div class="col-lg-3 col-md-6 single-fact">
+				<h1 class="counter">{{all}}</h1>
 				<p>Total Posts</p>
 			</div>
-			<div class="col-lg-4 col-md-6 single-fact">
-				<h1 class="counter">6784</h1>
+			<div class="col-lg-3 col-md-6 single-fact">
+				<h1 class="counter">{{english}}</h1>
 				<p>English Artical</p>
 			</div>
-			<div class="col-lg-4 col-md-6 single-fact">
-				<h1 class="counter">2239</h1>
+			<div class="col-lg-3 col-md-6 single-fact">
+				<h1 class="counter">{{bangla}}</h1>
 				<p>Bangla Artical</p>
 			</div>
 

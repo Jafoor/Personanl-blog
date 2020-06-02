@@ -1,0 +1,95 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block logu %}
+				        <a href="{% url 'home' %}"><img src="{{ site.loge.url }}" alt="" title="" height="50" weight="100"></a>
+{% endblock %}
+
+{% block content %}
+
+<section class="post-content-area single-post-area">
+  <br>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 posts-list">
+
+        {% for i in news %}
+        <div class="single-post row">
+          <div class="col-lg-3  col-md-3 meta-details">
+            <ul class="tags">
+              {% for j in i.tag.all %}
+              <li><a href="#">{{j}}</a></li>
+              {% endfor %}
+            </ul>
+            <div class="user-details row">
+              <!--<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{i.author}}</a> <span class="lnr lnr-user"></span></p>-->
+              <p class="date col-lg-12 col-md-12 col-6"><a href="#">{{i.pub_date}}</a> <span class="lnr lnr-calendar-full"></span></p>
+              <!--<p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span class="lnr lnr-eye"></span></p>-->
+
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 ">
+            <div class="feature-img">
+              <img class="img-fluid" src="{{i.photo.url}}" alt="">
+            </div>
+            <a class="posts-title" href="{% url 'blogdetails' word=i.urltitle %}"><h3>{{i.title}}</h3></a>
+            <p class="excert">
+              {{i.shortTxt}}
+            </p>
+            <a href="{% url 'blogdetails' word=i.urltitle %}" class="primary-btn">View More</a>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      <br>
+      Page {{news.number}} From {{news.paginator.num_pages}}
+       <br/><br/>
+       {% if news.has_previous %}
+       <a href="?page={{news.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
+       {% endif %}
+
+       {% for i in news.paginator.page_range %}
+           {% if news.number == i %}
+               <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>
+           {% else %}
+               <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>
+           {% endif %}
+       {% endfor %}
+
+           {% if news.has_next %}
+       <a href="?page={{news.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
+       {% endif %}
+
+
+</div>
+<div class="col-lg-4 sidebar-widgets">
+  <div class="widget-wrap">
+    <div class="single-sidebar-widget search-widget">
+      <div>
+        {% for c in cat %}
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action list-group-item-success" style="font-weight: bold; text-align: center; color: white; font-size:15px;">{{c.name}}</a>
+        {% for art in posts %}
+        {% if c.name|stringformat:"s" == art.category|stringformat:"s" %}
+        <a href="{% url 'blogdetails' word=art.urltitle %}" class="list-group-item list-group-item-action list-group-item-light">{{art.title}}</a>
+        {% endif %}
+        {% endfor %}
+        <br>
+      </div>
+      {% endfor %}
+
+
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+{% endblock %}

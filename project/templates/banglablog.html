@@ -45,6 +45,7 @@
 
 							{% endfor %}
 
+							{% if news %}
 							<br>
 				      Page {{news.number}} From {{news.paginator.num_pages}}
 				       <br/><br/>
@@ -63,6 +64,8 @@
 				           {% if news.has_next %}
 				       <a href="?page={{news.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
 				       {% endif %}
+
+							 {% endif %}
 							<!--
 							<div class="single-post row">
 								<div class="col-lg-3  col-md-3 meta-details">
@@ -197,15 +200,15 @@
 							<div class="widget-wrap">
 								<div class="single-sidebar-widget search-widget">
 									<form class="search-form" action="#">
-			                            <input placeholder="Search Posts" name="search" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'" >
+			                            <input placeholder="পোষ্ট খুঁজুন" name="search" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'" >
 			                            <button type="submit"><i class="fa fa-search"></i></button>
 			                        </form>
 								</div>
 								<div class="single-sidebar-widget user-info-widget">
-
-									<a><h4>Follow US</h4></a>
+									<img src="img/blog/user-info.png" alt="">
+									<a href="#"><h4> আমাদের অনুসরন করুন</h4></a>
 									<p>
-										Let us be social
+										চলুন সামাজিক হই
 									</p>
 
 									<ul class="social-links">
@@ -216,7 +219,7 @@
 									</ul>
 								</div>
 								<div class="single-sidebar-widget popular-post-widget">
-									<h4 class="popular-title">Popular Posts</h4>
+									<h4 class="popular-title"> জনপ্রিয় পোষ্ট</h4>
 									<div class="popular-post-list">
 										{% for i in news %}
 										<div class="single-post-list d-flex flex-row align-items-center">
@@ -240,7 +243,7 @@
 								</div>
 								-->
 								<div class="single-sidebar-widget post-category-widget">
-									<h4 class="category-title">Post Catgories</h4>
+									<h4 class="category-title"> পোষ্ট ক্যাটাগরি </h4>
 									<ul class="cat-list">
 										{% for i,j in cats.items %}
 										<li>

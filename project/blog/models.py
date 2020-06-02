@@ -33,6 +33,11 @@ class PostCategory(models.Model):
     name = models.CharField(max_length=120, unique=True)
     photo = models.ImageField(upload_to='category/')
     about = models.TextField()
+    blogType = (
+        ('english','English'),
+        ('bangla','Bangla')
+    )
+    language = models.CharField(choices = blogType, max_length = 20, default='english')
     author = models.ForeignKey(AuthorProfile, on_delete=models.SET_NULL, null=True)
     is_draft = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)

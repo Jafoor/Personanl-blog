@@ -6,7 +6,10 @@
 		<!-- Mobile Specific Meta -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/fav.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon_io/apple-touch-icon.png' %}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon_io//favicon-32x32.png' %}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon_io//favicon-16x16.png' %}">
+		<link rel="manifest" href="{% static 'img/favicon_io/site.webmanifest' %}">
 		<!-- Author Meta -->
 		<meta name="author" content="colorlib">
 		<!-- Meta Description -->
@@ -38,7 +41,9 @@
 		    <div class="container main-menu">
 		    	<div class="row align-items-center justify-content-between d-flex">
 			      <div id="logo">
-			        <a href="{% url 'home' %}"><img src="{% static 'img/logo.jpg'%}" alt="" title="" height="50" weight="100"></a>
+							{% block logu %}
+
+							{% endblock %}
 			      </div>
 			      <nav id="nav-menu-container">
 			        <ul class="nav-menu">
@@ -47,9 +52,10 @@
 			          <li class="menu-has-children"><a href="">Blog</a>
 			            <ul>
 			              <li><a href="{% url 'englishblog' %}">English Blog</a></li>
-			              <li><a href="blog-single.html">Bangla Blog</a></li>
+			              <li><a href="{% url 'banglablog' %}">Bangla Blog</a></li>
 			            </ul>
 			          </li>
+								<li><a href="{% url 'category' %}">Catgories</a></li>
 			        </ul>
 			      </nav><!-- #nav-menu-container -->
 		    	</div>
@@ -69,48 +75,15 @@
             <footer class="footer-area section-gap">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-5 col-md-6 col-sm-6">
+                        <div class="col-lg-12 col-md-12 col-sm-3">
                             <div class="single-footer-widget">
-                                <h4>About Me</h4>
-                                <p>
-                                    We have tested a number of registry fix and clean utilities and present our top 3 list on our site for your convenience.
+                                <h4 align="center">About Me</h4>
+                                <p align="center">
+                                    This site is built for my personal uses.
                                 </p>
-                                <p class="footer-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
-                        </div>
-
-
-                        <div class="col-lg-5 col-md-6 col-sm-6">
-                            <div class="single-footer-widget">
-                                <h4>Newsletter</h4>
-                                <p>Stay updated with our latest trends</p>
-								<div class="" id="mc_embed_signup">
-									 <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get">
-									  <div class="input-group">
-									    <input type="text" class="form-control" name="EMAIL" placeholder="Enter Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email Address '" required="" type="email">
-									    <div class="input-group-btn">
-									      <button class="btn btn-default" type="submit">
-									        <span class="lnr lnr-arrow-right"></span>
-									      </button>
-									    </div>
-									    	<div class="info"></div>
-									  </div>
-									</form>
-								</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-                            <div class="single-footer-widget">
-                                <h4>Follow Me</h4>
-                                <p>Let us be social</p>
-                                <div class="footer-social d-flex align-items-center">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
-                                </div>
+                                <p class="footer-text" align="center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+														Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This site is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://github.com/Jafoor" target="_blank">Abu Jafor Mohammad Saleh</a>
+														<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                             </div>
                         </div>
                     </div>

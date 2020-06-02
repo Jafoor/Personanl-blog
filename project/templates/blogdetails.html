@@ -1,6 +1,10 @@
 {% extends 'master.html' %}
 {% load static %}
 
+{% block logu %}
+				        <a href="{% url 'home' %}"><img src="{{ site.loge.url }}" alt="" title="" height="50" weight="100"></a>
+{% endblock %}
+
 {% block content %}
 
 
@@ -200,54 +204,40 @@
 
 									</div>
 								</div>
+								{% if related %}
+								<div class="single-sidebar-widget popular-post-widget">
+									<h4 class="popular-title">Related Posts</h4>
+									<div class="popular-post-list">
+										{% for posts in related %}
+										<div class="single-post-list d-flex flex-row align-items-center">
+											<div class="thumb">
+												<img class="img-fluid" style="width:100px;height:50px;" src="{{posts.photo.url}}" alt="">
+											</div>
+											<div class="details">
+												<a href="{% url 'blogdetails' word=posts.urltitle %}"><h6>{{posts.title}}</h6></a>
+												<p>{{posts.pub_date}}</p>
+											</div>
+										</div>
+										{% endfor %}
+
+									</div>
+								</div>
+								{% endif %}
+
 								<div class="single-sidebar-widget ads-widget">
 									<a href="#"><img class="img-fluid" src="img/blog/ads-banner.jpg" alt=""></a>
 								</div>
 								<div class="single-sidebar-widget post-category-widget">
 									<h4 class="category-title">Post Catgories</h4>
 									<ul class="cat-list">
+										{% for i,j in cats.items %}
 										<li>
 											<a href="#" class="d-flex justify-content-between">
-												<p>Technology</p>
-												<p>37</p>
+												<p>{{i}}</p>
+												<p>{{j}}</p>
 											</a>
 										</li>
-										<li>
-											<a href="#" class="d-flex justify-content-between">
-												<p>Lifestyle</p>
-												<p>24</p>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="d-flex justify-content-between">
-												<p>Fashion</p>
-												<p>59</p>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="d-flex justify-content-between">
-												<p>Art</p>
-												<p>29</p>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="d-flex justify-content-between">
-												<p>Food</p>
-												<p>15</p>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="d-flex justify-content-between">
-												<p>Architecture</p>
-												<p>09</p>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="d-flex justify-content-between">
-												<p>Adventure</p>
-												<p>44</p>
-											</a>
-										</li>
+										{% endfor %}
 									</ul>
 								</div>
 							</div>

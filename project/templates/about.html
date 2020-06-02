@@ -1,6 +1,10 @@
 {% extends 'master.html' %}
 {% load static %}
 
+{% block logu %}
+				        <a href="{% url 'home' %}"><img src="{{ site.loge.url }}" alt="" title="" height="50" weight="100"></a>
+{% endblock %}
+
 {% block content %}
 <!-- start banner Area -->
 <section class="about-banner">
@@ -22,23 +26,34 @@
 	<div class="container">
 		<div class="row align-items-center justify-content-between">
 			<div class="col-lg-6 col-md-6 home-about-left">
-				<img class="img-fluid" src="{% static 'img/mypic.jpg' %}" alt="">
+				<img class="img-fluid" src="{{ site.mypic1.url }}" alt="">
 			</div>
 			<div class="col-lg-5 col-md-6 home-about-right">
 				<h6>About Me</h6>
+				<style>
+
+					li {
+						   display: inline-block;
+							 padding: 5px;
+						}
+
+				</style>
+					<ul>
+						<li><a href="{{site.fb}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="{{site.tw}}" target="_blank><i class="fa fa-twitter"></i></a></li>
+						<li><a href="{{site.gh}}" target="_blank><i class="fa fa-github"></i></a></li>
+					</ul>
+
+			<br>
 				<h1 class="text-uppercase">Personal Details</h1>
 				<p>
-					Here, I focus on a range of items and features that we use in life without giving them a second thought. such as Coca Cola. Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+					Hi! I'm Abu Jafo Mohammad Saleh. People know me as Jafor. Presently, I study in Jashore University of Science and Technology(JUST) at Computer Science and Engineeering(CSE). I love Competitive Programming.
 				</p>
-				<a href="#" class="primary-btn text-uppercase">View Full Details</a>
+				<a href="{{ site.mypic2.url }}" class="primary-btn text-uppercase" download="CV"> Download my CV </a>
+				<a href="{{ site.mypic2.url }}" class="primary-btn text-uppercase" target="_blank"> View cv </a>
 			</div>
 			<div class="col-lg-12 pt-60">
-				<p>
-					It won’t be a bigger problem to find one video game lover in your neighbor. Since the introduction of Virtual Game, it has been achieving great heights so far as its popularity and technological advancement are concerned. The history of video game is as interesting as a fairy tale.
-				</p>
-				<p>
-					The quality of today’s video game was not at all there when video game first conceptualized and played ever. During the formulative years, video games were created by using various interactive electronic devices with various display formats. The first ever video game was designed in 1947 by Thomas T. Goldsmith Jr.
-				</p>
+
 				<h4 class="pt-30">Tools Expertness</h4>
 			</div>
 		</div>
@@ -46,19 +61,19 @@
 			<div class="col-lg-6 skill-left">
 				<div class="single-skill">
 					<p>
-						After Effects 85%
+						 HTML 70%
 					</p>
-					<div class="skill" data-width="85"></div>
+					<div class="skill" data-width="70"></div>
 				</div>
 				<div class="single-skill">
 					<p>
-						Photoshop 90%
+						CSS 60%
 					</p>
-					<div class="skill" data-width="90"></div>
+					<div class="skill" data-width="60"></div>
 				</div>
 				<div class="single-skill">
 					<p>
-						Illustrator 70%
+						Django 70%
 					</p>
 					<div class="skill" data-width="70"></div>
 				</div>
@@ -66,13 +81,13 @@
 			<div class="col-lg-6 skill-right">
 				<div class="single-skill">
 					<p>
-						Sublime 95%
+						Python 75%
 					</p>
-					<div class="skill" data-width="95"></div>
+					<div class="skill" data-width="75"></div>
 				</div>
 				<div class="single-skill">
 					<p>
-						Sketch 85%
+						C++ 85%
 					</p>
 					<div class="skill" data-width="85"></div>
 				</div>
@@ -83,7 +98,7 @@
 </section>
 <!-- End home-about Area -->
 
-<!-- Start timeline Area -->
+<!-- Start timeline Area
 <section class="timeline pb-120">
 			<div class="text-center">
 					<div class="menu-content pb-70">
@@ -142,10 +157,10 @@
 	</ul>
 </section>
 
-<!-- End timeline Area -->
+ End timeline Area -->
 
 
-<!-- Start testimonial Area -->
+<!-- Start testimonial Area
 	<section class="testimonial-area section-gap">
 			<div class="container">
 					<div class="row d-flex justify-content-center">
@@ -186,32 +201,31 @@
 					</div>
 			</div>
 	</section>
-	<!-- End testimonial Area -->
+	 End testimonial Area -->
 
-	<!-- Start brands Area -->
+	<!-- Start brands Area
 	<section class="brands-area">
 			<div class="container">
 					<div class="brand-wrap">
 							<div class="row align-items-center active-brand-carusel justify-content-start no-gutters">
 									<div class="col single-brand">
-											<a href="#"><img class="mx-auto" src="img/l1.png" alt=""></a>
+											<a href="#"><img class="mx-auto" src="{% static 'img/l1.png' %}" alt=""></a>
 									</div>
 									<div class="col single-brand">
-											<a href="#"><img class="mx-auto" src="img/l2.png" alt=""></a>
+											<a href="#"><img class="mx-auto" src="{% static 'img/l2.png' %}" alt=""></a>
 									</div>
 									<div class="col single-brand">
-											<a href="#"><img class="mx-auto" src="img/l3.png" alt=""></a>
+											<a href="#"><img class="mx-auto" src="{% static 'img/l3.png' %}" alt=""></a>
 									</div>
 									<div class="col single-brand">
-											<a href="#"><img class="mx-auto" src="img/l4.png" alt=""></a>
+											<a href="#"><img class="mx-auto" src="{% static 'img/l4.png' %}" alt=""></a>
 									</div>
 									<div class="col single-brand">
-											<a href="#"><img class="mx-auto" src="img/l5.png" alt=""></a>
+											<a href="#"><img class="mx-auto" src="{% static 'img/l5.png' %}" alt=""></a>
 									</div>
 							</div>
 					</div>
 			</div>
 	</section>
-
+	 End brands Area -->
 	{% endblock %}
-	<!-- End brands Area -->
